@@ -1,6 +1,6 @@
 """Campaign event schema — shared between producer and consumer."""
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum
 from typing import Optional
 import json
@@ -59,7 +59,7 @@ class CampaignEvent:
             event_type=event_type,
             channel=channel,
             device=device,
-            event_timestamp=datetime.utcnow().isoformat(),
+            event_timestamp=datetime.now(timezone.utc).isoformat(),
             revenue=revenue,
             session_id=str(uuid.uuid4()),
             country=country,
